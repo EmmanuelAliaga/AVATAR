@@ -1,0 +1,16 @@
+{
+  "name": "avatar",
+  "version": "1.0.0",
+  "description": "Nuestro juego Avatar ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Emmanuel Aliaga via Platzi",
+  "license": "ISC",
+  "dependencies": {
+    "@appland/appmap-agent-js": "^11.6.0",
+    "cors": "^2.8.5",
+    "express": "^4.18.2"
+  }
+}

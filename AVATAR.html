@@ -1,0 +1,75 @@
+<html> 
+<!DOCTYPE html>
+    <head>
+         <meta charset="utf-8" />
+        <title>AVATAR</title>
+        <link rel="stylesheet" href="styles.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <section id="inicio">
+            <h1 class="titulo">Avatar, la aventura de Mang</h1>
+            <h3 class="subtitulo">Elije un modo</h3>
+                <div class="modos">
+                    <div id="caja-de-modo">
+                        <input name="modo" type="radio" id="combate-simple">
+                        <label class="modo" for="combate-simple">
+                            <img class="imagen-modo" src="./assets/personajes.png" alt="personajes">
+                            <p>Combate simple</p>
+                        </label>
+                    </div>
+                    <div id="caja-de-modo">
+                        <input name="modo" type="radio" id="combate-random">
+                        <label class="modo" for="combate-random">
+                            <img class="imagen-modo" src="./assets/incognita.png" alt="incognita">
+                            <p>Enemigo Random</p>
+                        </label>
+                    </div>
+                </div>
+                <button id="boton-seleccionar-modo">Seleccionar</button>
+        </section>
+        <section id="seleccionar-personaje">
+                <h1 class="titulo">Avatar, la aventura de Mang</h1>
+                <h3 class="subtitulo">Elige tu personaje</h3>
+                <div class="nombres" id="caja-de-personajes">
+                </div>
+                <button id="boton-seleccionar">SELECCIONAR</button>
+        </section>
+        <section id="ver-mapa">
+            <h1>Recorre el mapa</h1>
+            <!-- La etiqueta Canvas sirve para crear un lienzo en HTML -->
+            <canvas id="mapa"></canvas>
+        <div id="caja-de-teclas">
+            <button id="izq" onmouseup="detenerMovimiento()" onmousedown="moverIzquierda()">◂</button>
+            <button id="der" onmouseup="detenerMovimiento()" onmousedown="moverDerecha()">▸</utton>
+            <button id="arr" onmouseup="detenerMovimiento()" onmousedown="moverArriba()">▴</button>
+            <button id="aba" onmouseup="detenerMovimiento()" onmousedown="moverAbajo()">▾</button>
+        </div>
+        </section>
+        <section id="eleccion-ataque">
+                    <h1 id="primertitulo" class="titulo">Avatar, la aventura de Mang</h1>
+                    <h2>Elige tu ataque</h2>
+                <div id="contenedor-de-ataques" class="caja-de-ataques">
+                </div>
+                <div ID="MENSAJES">
+                    <p id="resultado">Suerte en la batalla</p>
+                    <section id="reiniciar">
+                        <p><button id="boton-reiniciar">REINICIAR</button></p>
+                    </section>
+                </div>
+                <div class="ataques">
+                    <div class="datos-jugdor">
+                        <p id="jugador">Tu personaje</p>
+                        <p id="victorias-jugador">0</p>
+                        <p id="ataques-del-jugador"></p>
+                    </div>
+                    <div class="datos-enemigo">
+                        <p id="enemigo">Tu personaje</p>
+                        <p id="victorias-enemigo">0</p>
+                        <p id="ataques-del-enemigo"></p>
+                    </div>
+                </div>
+            </section>
+            <script src="js/AVATAR.js"></script>
+    </body>
+    </html>

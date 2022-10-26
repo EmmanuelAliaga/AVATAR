@@ -1,0 +1,261 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative&family=Poppins:wght@500&display=swap');
+
+body {
+    font-family: 'Cinzel Decorative', cursive;
+    background-color: bisque;   
+    background-image: url(./assets/background2.jpeg);
+    background-size: cover;
+}
+#inicio {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.modos {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+#caja-de-modo {
+    margin: 20px;
+    width: 300px;
+    height: 200px;
+    border-radius: 40px;
+    border: 2px solid rgb(217, 126, 35);
+    color: black;
+    font-family: 'Cinzel Decorative';
+    font-size: larger;
+    background-color: #ffd49e;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+#caja-de-modo input:checked + label {
+    border:solid 2px orange;
+    width: 300px;
+    height: 200px;
+    border-radius: 40px;
+    color: black;
+    font-family: 'Cinzel Decorative';
+    font-size: larger;
+    background-color: #ffd49e;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}    
+.imagen-modo {
+    width: 200px;
+    margin: 5px;
+}
+.modos p {
+    background-color: transparent;
+    border: transparent;
+    font-family: 'Cinzel Decorative';
+    font-size: smaller;
+    text-align: center;
+}
+.modos label {
+    display: flex;
+    flex-direction: column;
+}
+#SELECCIONAR-PERSONAJE {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.titulo {
+    color: 1d3557;
+    font-size: 34px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+.subtitulo {
+    color: 1d3557;
+    font-size: 20px;
+    text-align: center;
+}
+.nombres {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.tarjeta {
+    height: 100px;
+    width: 180px;
+    background-color: coral;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 1px solid black;
+    margin: 10px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.nombres img {
+    width: 80px;
+}
+input {
+    display: none;
+}
+#caja-de-personajes input:checked + label {
+    border:solid 2px rgb(250, 136, 6);
+    height: 110px;
+    width: 190px;
+    padding: 10px;
+    box-sizing: border-box;
+}   
+#boton-seleccionar {
+    width: 150px;
+    height: 60px;
+    border-radius: 20px;
+    background: darkkhaki;
+    border: 2px solid cornflowerblue;
+    color: 1d3557;
+    font-family: 'Poppins', sans-serif;
+    margin-top: 30px;
+}
+#boton-seleccionar-modo {
+    width: 150px;
+    height: 60px;
+    border-radius: 20px;
+    background: darkkhaki;
+    border: 2px solid cornflowerblue;
+    color: 1d3557;
+    font-family: 'Poppins', sans-serif;
+    margin-top: 30px;
+}
+
+#ver-mapa {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+}
+canvas {
+    border: solid 5px black;
+    border-radius: 50px;
+}
+#caja-de-teclas {
+    display: grid;
+    gap: .25rem;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+}
+
+#caja-de-teclas button {
+    background-color: transparent;
+    border: solid 1px;
+    font-size: 20px;
+}
+#izq {
+    grid-column: 1/2;
+    grid-row: 2/3;
+}
+#der {
+    grid-column: 3/4;
+    grid-row: 2/3;
+}
+#arr {
+    grid-column: 2/3;
+}
+#aba {
+    grid-column: 2/3;
+    grid-row: 3/4;
+}
+#ELECCION-ATAQUE {
+    flex-direction: column;
+    align-items: center;
+    color: #354259;
+}
+.boton-de-ataque{
+    width: 60px;
+    height: 40px;
+    border-radius: 20px;
+    border: transparent;
+    background-color: #6495ed57;
+    padding: 10px;
+    box-sizing: border-box;
+    margin: 20px 10px 20px 10px;
+    font-family: 'Poppins', sans-serif;
+    text-align: center; 
+}
+.boton-de-ataque:hover {
+    border:solid 2px #354259;
+    padding: 2px;
+    box-sizing: border-box;
+}
+#MENSAJES {
+    font-size: 30px;
+    width: 450px;
+    height: 150px;
+    background-color: #ffd49e;
+    border: solid #354259;
+    color: #354259;
+    padding: 10px;
+    box-sizing: border-box;
+    border-radius: 40px;
+    display: flex;
+    flex-direction: column;
+    margin: 30px;
+    justify-content: center;
+    align-items: center;
+}
+.ataques {
+    display: grid;
+    grid-template-columns: 100px 100px;
+    text-align: center; 
+    background-color: #ffd49e;
+    color: #354259;
+    border-radius: 20px;
+    border: solid;
+}
+#resultado {
+    height: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0px;
+}
+#REINICIAR {
+    height: 30px;
+    align-items: center;
+    justify-content: center;
+}
+#boton-reiniciar {
+    background-color: transparent;
+    border: none;
+    color: #54BAB9;
+    font-family: 'Poppins', sans-serif;
+    font-size: 20px;
+}
+.datos-jugador, .dato-.enemigo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+@media (max-width: 540px) {
+    .nombres {
+        display: flex;
+        flex-direction: column;
+    }
+    .titulo {
+        margin-bottom: -15px;
+    }
+    .caja-de-ataques {
+        display: flex;
+        flex-direction: row;
+    }
+    #MENSAJES {
+        font-size: 20px;
+        width: 280px;
+        height: 130px;
+    }
+    .modos {
+        flex-direction: column;
+    }
+}
