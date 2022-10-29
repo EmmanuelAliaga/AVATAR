@@ -324,6 +324,7 @@ function pintarCanvas () {
         mapa.height
     )
     combatiente.pintarPersonaje()
+    enviarPosicion(combatiente.x, combatiente.y)
     pintarEnemigos()
     if (combatiente.velocidadX !== 0 || combatiente.velocidadY !== 0 ) {
         for (let i = 0; i < combatientes.length; i++) {
@@ -331,6 +332,18 @@ function pintarCanvas () {
             revisarColisiones (combatientes[i])}
         }
     }
+}
+function enviarPosicion(x, y) {
+fetch(`http://localhost:8080/personaje/${jugadorId}/posicion`, {
+    method: "post",
+    headers: {
+        "Content-Type": "application/json"
+    },
+    body: JSON.stringify ({
+        x,
+        y
+    })
+})
 }
 function pintarEnemigos () {
     for (let i = 0; i < combatientes.length; i++) {
