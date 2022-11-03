@@ -60,6 +60,7 @@ app.post ("/personaje/:jugadorId/posicion", (req, res) => {
     const y = req.body.y || 0
     const jugadorIndex = jugadores.findIndex((jugador) => jugadorId === jugador.id)
 
+    
     if (jugadorIndex >= 0) {
         jugadores[jugadorIndex].actualizarPosicion(x, y)
     }
