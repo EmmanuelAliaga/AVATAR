@@ -7,6 +7,7 @@ const SectionAtaque = document.getElementById("eleccion-ataque")
 const sectionInicio = document.getElementById("inicio")
 const botonCombateSimple = document.getElementById("combate-simple")
 const botonCombateRandom = document.getElementById ("combate-random")
+const botonCombateOnline = document.getElementById ("combate-online")
 const SectionMapa = document.getElementById("ver-mapa")
 const mapa = document.getElementById("mapa")
 const SectionCajaDeDirecciones = document.getElementById("caja-de-teclas")
@@ -49,6 +50,7 @@ let inputtopo
 let inputSokku
 let personajeSeleccionado
 let combatiente = []
+let combatientesParaOnline = []
 let botones = []  
 let ataqueJugador = []
 let ataqueEnemigo = []
@@ -117,42 +119,35 @@ function reajustarMapa () {
     mapa.width = anchoDelMapa
     mapa.height = alturaQueBuscamos
 }
-Mang.ataques.push (
+const ATAQUES_TIERRA = [
     { nombre:"🏔️", id:"boton-tierra"},
     { nombre:"🏔️", id:"boton-tierra"},
     { nombre:"🏔️", id:"boton-tierra"},
     { nombre:"🔥", id:"boton-fuego"},
     { nombre:"💧", id:"boton-agua"},
-        )
-    Topo.ataques.push (
-        { nombre:"🏔️", id:"boton-tierra"},
-        { nombre:"🏔️", id:"boton-tierra"},
-        { nombre:"🏔️", id:"boton-tierra"},
-        { nombre:"🔥", id:"boton-fuego"},
-        { nombre:"💧", id:"boton-agua"},
-    )
-    Matara.ataques.push (
-        { nombre:"💧", id:"boton-agua"},
-        { nombre:"💧", id:"boton-agua"},
-        { nombre:"💧", id:"boton-agua"},
-        { nombre:"🔥", id:"boton-fuego"},
-        { nombre:"🏔️", id:"boton-tierra"},
-    )
-    Sokku.ataques.push (
-        { nombre:"💧", id:"boton-agua"},
-        { nombre:"💧", id:"boton-agua"},
-        { nombre:"💧", id:"boton-agua"},
-        { nombre:"🔥", id:"boton-fuego"},
-        { nombre:"🏔️", id:"boton-tierra"},
-    )
-    Muko.ataques.push (
-        { nombre:"🔥", id:"boton-fuego"},
-        { nombre:"🔥", id:"boton-fuego"},
-        { nombre:"🔥", id:"boton-fuego"},
-        { nombre:"🏔️", id:"boton-tierra"},
-        { nombre:"💧", id:"boton-agua"},
-    )
+]
+const ATAQUES_AGUA = [
+    { nombre:"💧", id:"boton-agua"},
+    { nombre:"💧", id:"boton-agua"},
+    { nombre:"💧", id:"boton-agua"},
+    { nombre:"🔥", id:"boton-fuego"},
+    { nombre:"🏔️", id:"boton-tierra"},
+]
+const ATAQUES_FUEGO = [
+    { nombre:"🔥", id:"boton-fuego"},
+    { nombre:"🔥", id:"boton-fuego"},
+    { nombre:"🔥", id:"boton-fuego"},
+    { nombre:"🏔️", id:"boton-tierra"},
+    { nombre:"💧", id:"boton-agua"},
+]
+Mang.ataques.push (...ATAQUES_TIERRA)
+Topo.ataques.push (...ATAQUES_TIERRA)
+Matara.ataques.push (...ATAQUES_AGUA)
+Sokku.ataques.push (...ATAQUES_AGUA)
+Muko.ataques.push (...ATAQUES_FUEGO)
+
 combatientes.push(Mang, Matara, Muko, Topo, Sokku)
+combatientesParaOnline.push(Mang, Matara, Muko, Topo, Sokku)
 
 function reajustarTamaños () {
     porcentajeDeReduccionDePersonajesX = anchoDelMapa / anchoUltimoDeMapa
@@ -240,7 +235,11 @@ function seleccionDeModo() {
     if (botonCombateSimple.checked) {
         sectionInicio.style.display = "none"
         SectionSeleccionPersonaje.style.display = "flex"
-    }else {
+    }else if (botonCombateOnline.checked) {
+        sectionInicio.style.display = "none"
+        SectionSeleccionPersonaje.style.display = "flex"
+    }
+    else {
         alert("Debes seleccionar un modo para continuar")
     }
 }
@@ -344,6 +343,24 @@ fetch(`http://localhost:8080/personaje/${jugadorId}/posicion`, {
         y
     })
 })
+    .then(function (res) {
+        if (res.ok) {
+            res.json()
+                .then(function({ enemigos }) {
+                    enemigos.forEach(function (enemigo) {
+                        const combatienteNombre = enemigo.combatiente.nombre || ""
+                        // AQUI HAY ERRORES.
+                        // Aparentemente a la hora de dibujar combatienteEnemigo no encuentra ninguno de los arhivos. 
+                        // for (let i = 0; i < combatientesParaOnline.length; i++) {
+                        //     if (combatientesParaOnline[i].nombre === combatienteNombre || enemigos > 0) {
+                        //     let combatienteEnemigo = new Personaje(combatientesParaOnline[i].nombre, combatientesParaOnline[i].Image, 5, combatientesParaOnline[i].tribu,combatientesParaOnline[i].fotoMapa, combatientesParaOnline[i].x, combatientesParaOnline[i].y) 
+                        //     combatienteEnemigo.pintarPersonaje()
+                        //     }
+                        // }
+                    })
+                })
+        }
+    })
 }
 function pintarEnemigos () {
     for (let i = 0; i < combatientes.length; i++) {
@@ -392,6 +409,9 @@ function detenerMovimiento () {
     combatiente.velocidadY = 0
 }
 function iniciarMapa () {
+    if (botonCombateOnline.checked) {
+        combatientes = []
+    }
     intervalo = setInterval (pintarCanvas, 50)
     SectionMapa.style.display = "flex"
     window.addEventListener("keydown", sePresionoUnaTecla)

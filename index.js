@@ -63,8 +63,11 @@ app.post ("/personaje/:jugadorId/posicion", (req, res) => {
     if (jugadorIndex >= 0) {
         jugadores[jugadorIndex].actualizarPosicion(x, y)
     }
+    const enemigos = jugadores.filter((jugador) => jugadorId != jugador.id)
 
-    res.end()
+    res.send({
+        enemigos
+    })
 })
 
 app.listen(8080, () =>{
